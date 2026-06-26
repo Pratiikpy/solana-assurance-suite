@@ -1,0 +1,9 @@
+{
+  "name": "eval-run",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Offline proof for solana-agent-eval: golden dataset + two agent versions + regression gate.",
+  "scripts": { "test": "node --test" },
+  "license": "MIT"
+}

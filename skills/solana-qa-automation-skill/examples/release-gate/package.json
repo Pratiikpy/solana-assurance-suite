@@ -1,0 +1,9 @@
+{
+  "name": "release-gate",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Offline proof for solana-qa-automation: the QA release gate blocks on a regression and passes when green.",
+  "scripts": { "test": "node --test" },
+  "license": "MIT"
+}

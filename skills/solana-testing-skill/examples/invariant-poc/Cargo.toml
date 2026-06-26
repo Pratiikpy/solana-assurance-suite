@@ -1,0 +1,13 @@
+[package]
+name = "invariant-poc"
+version = "0.1.0"
+edition = "2021"
+description = "Pure-logic invariant/property-testing demo for the solana-testing skill: a vault withdraw with a vulnerable and a fixed variant, where proptest catches the bug."
+license = "MIT"
+
+# Pure host-target logic — no solana-* deps — so it compiles and runs in seconds
+# with plain `cargo test`, and works under cargo-llvm-cov for coverage.
+[dependencies]
+
+[dev-dependencies]
+proptest = "1"

@@ -1,0 +1,17 @@
+[
+  { "id": "transfer-sol", "prompt": "Send 0.5 SOL to <addr>",
+    "expected": { "tool": "transfer_sol", "program": "11111111111111111111111111111111",
+      "accounts": ["from", "to"], "args": { "amount": 500000000 } } },
+  { "id": "transfer-spl", "prompt": "Send 10 USDC to <addr>",
+    "expected": { "tool": "transfer_token", "program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "accounts": ["source", "dest", "owner", "mint"], "args": { "amount": 10000000 } } },
+  { "id": "create-ata", "prompt": "Create an associated token account for <mint>",
+    "expected": { "tool": "create_ata", "program": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+      "accounts": ["payer", "ata", "owner", "mint"], "args": {} } },
+  { "id": "delegate-stake", "prompt": "Stake to validator <vote>",
+    "expected": { "tool": "delegate_stake", "program": "Stake11111111111111111111111111111111111111",
+      "accounts": ["stake", "vote", "authority"], "args": {} } },
+  { "id": "close-token-account", "prompt": "Close my empty token account",
+    "expected": { "tool": "close_token_account", "program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "accounts": ["account", "dest", "owner"], "args": {} } }
+]

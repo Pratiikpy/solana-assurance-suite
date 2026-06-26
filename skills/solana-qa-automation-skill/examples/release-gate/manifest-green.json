@@ -1,0 +1,16 @@
+{
+  "release": "v1.2.0-rc",
+  "layers": [
+    { "name": "unit",         "status": "pass", "required": true },
+    { "name": "integration",  "status": "pass", "required": true },
+    { "name": "e2e",          "status": "pass", "required": true, "detail": "Playwright: 18 flows green" },
+    { "name": "contract",     "status": "pass", "required": true, "detail": "anchor/foundry tests green" },
+    { "name": "formal",       "status": "pass", "required": true, "detail": "halmos: no counterexamples" },
+    { "name": "coverage",     "status": "pass", "metric": 0.86, "threshold": 0.80, "direction": "min", "required": true },
+    { "name": "lighthouse",   "status": "pass", "metric": 0.93, "threshold": 0.90, "direction": "min", "required": true },
+    { "name": "a11y",         "status": "pass", "metric": 0.98, "threshold": 0.95, "direction": "min", "required": true },
+    { "name": "load-p95ms",   "status": "pass", "metric": 420,  "threshold": 500,  "direction": "max", "required": true },
+    { "name": "security",     "status": "pass", "required": true, "detail": "gitleaks + slither/cargo-audit clean" },
+    { "name": "uptime",       "status": "pass", "metric": 99.95, "threshold": 99.9, "direction": "min", "required": false }
+  ]
+}

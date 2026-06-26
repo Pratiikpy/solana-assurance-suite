@@ -1,0 +1,12 @@
+[
+  { "id": "transfer-sol", "tool": "transfer_sol", "program": "11111111111111111111111111111111",
+    "accounts": ["from", "to"], "args": { "amount": 500000000 } },
+  { "id": "transfer-spl", "tool": "transfer_token", "program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "accounts": ["source", "dest", "owner", "mint"], "args": { "amount": 10000000 } },
+  { "id": "create-ata", "tool": "create_ata", "program": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+    "accounts": ["payer", "ata", "owner", "mint"], "args": {} },
+  { "id": "delegate-stake", "tool": "delegate_stake", "program": "Stake11111111111111111111111111111111111111",
+    "accounts": ["stake", "vote", "authority"], "args": {} },
+  { "id": "close-token-account", "tool": "close_token_account", "program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+    "accounts": ["account", "dest", "owner"], "args": {} }
+]

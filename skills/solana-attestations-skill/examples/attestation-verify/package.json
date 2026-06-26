@@ -1,0 +1,9 @@
+{
+  "name": "attestation-verify",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Offline proof for the solana-attestations skill: a SAS attestation verifier with adversarial test cases.",
+  "scripts": { "test": "node --test" },
+  "license": "MIT"
+}

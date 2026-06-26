@@ -1,0 +1,50 @@
+{
+  "address": "Escrow1111111111111111111111111111111111111",
+  "metadata": { "name": "escrow", "version": "0.1.0", "spec": "0.1.0" },
+  "instructions": [
+    {
+      "name": "initialize",
+      "discriminator": [175, 175, 109, 31, 13, 152, 155, 237],
+      "accounts": [
+        { "name": "escrow", "writable": true },
+        { "name": "authority", "writable": true, "signer": true },
+        { "name": "system_program" }
+      ],
+      "args": [{ "name": "seed", "type": "u64" }]
+    },
+    {
+      "name": "deposit",
+      "discriminator": [242, 35, 198, 137, 82, 225, 242, 182],
+      "accounts": [
+        { "name": "escrow", "writable": true },
+        { "name": "vault", "writable": true },
+        { "name": "depositor_token", "writable": true },
+        { "name": "depositor", "signer": true },
+        { "name": "token_program" }
+      ],
+      "args": [{ "name": "amount", "type": "u64" }]
+    },
+    {
+      "name": "withdraw",
+      "discriminator": [183, 18, 70, 156, 148, 109, 161, 34],
+      "accounts": [
+        { "name": "escrow", "writable": true },
+        { "name": "vault", "writable": true },
+        { "name": "recipient_token", "writable": true },
+        { "name": "authority", "signer": true },
+        { "name": "token_program" }
+      ],
+      "args": [{ "name": "amount", "type": "u64" }]
+    },
+    {
+      "name": "cancel",
+      "discriminator": [232, 219, 223, 41, 219, 236, 220, 190],
+      "accounts": [
+        { "name": "escrow", "writable": true },
+        { "name": "authority", "signer": true }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [{ "name": "Escrow", "discriminator": [31, 213, 123, 187, 186, 22, 218, 155] }]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "bridge-guards",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Runnable cross-chain verification guards (emitter allowlist, replay, decimal normalization) for the solana-bridge skill.",
+  "scripts": { "test": "node --test" },
+  "license": "MIT"
+}

@@ -1,0 +1,31 @@
+# Rust
+/target
+**/target
+Cargo.lock
+
+# Node
+node_modules
+dist
+*.log
+
+# Solana
+test-ledger
+.anchor
+**/*.so
+!examples/**/fixtures/*.so
+
+# Trident fuzz artifacts
+trident-tests/fuzz_tests/fuzzing/corpus
+trident-tests/fuzz_tests/fuzzing/crashes
+trident-tests/fuzz_tests/fuzzing/hangs
+
+# Coverage
+*.profraw
+coverage/
+lcov.info
+
+# OS / editor
+.DS_Store
+.idea
+.vscode
+*.swp

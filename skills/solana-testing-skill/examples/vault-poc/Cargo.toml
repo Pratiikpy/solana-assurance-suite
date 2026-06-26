@@ -1,0 +1,24 @@
+[package]
+name = "vault_poc"
+version = "0.1.0"
+edition = "2021"
+description = "A real on-chain native Solana program with a vulnerable and a fixed withdraw, tested with Mollusk so the missing-signer test fails on the bug and passes on the fix."
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+
+[features]
+# Build with `--features vuln` to drop the signer check and watch the negative
+# test go red — proof the check is load-bearing.
+vuln = []
+
+[dependencies]
+solana-program = "2"
+
+[dev-dependencies]
+mollusk-svm = "0.13"
+solana-account = "3"
+solana-instruction = "3"
+solana-pubkey = "3"
+solana-program-error = "3"

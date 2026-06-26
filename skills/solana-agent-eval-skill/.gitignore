@@ -1,0 +1,28 @@
+# Node
+node_modules
+dist
+*.log
+
+# Rust (svm-grounded scorer harness, if added)
+/target
+**/target
+Cargo.lock
+
+# Solana
+test-ledger
+.anchor
+**/*.so
+
+# Eval run artifacts (keep the committed example fixtures)
+*-scores.json
+eval-out/
+
+# Secrets
+.env
+*.key
+
+# OS / editor
+.DS_Store
+.idea
+.vscode
+*.swp

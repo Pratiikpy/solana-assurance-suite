@@ -1,0 +1,23 @@
+name: solana-tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo
+            ~/.cache/solana
+          key: ${{ runner.os }}-sbf-${{ hashFiles('**/Cargo.lock') }}
+      - name: Install Solana toolchain
+        run: |
+          sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+          echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
+      - name: Unit + integration (SBF)
+        run: cargo test-sbf
+      # - name: Fuzz smoke
+      #   run: cargo install trident-cli && trident fuzz run <target> # short, gated
+      # - name: Readiness gate
+      #   run: node tools/soltest-gen/soltest-gen.mjs target/idl/escrow.json && cat READINESS.md

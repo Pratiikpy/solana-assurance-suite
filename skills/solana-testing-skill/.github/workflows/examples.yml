@@ -1,0 +1,68 @@
+name: examples
+
+# Public, reproducible proof that the skill's examples actually run.
+# - invariant-poc: pure-logic proptest suite (fast, host target)
+# - vault-poc: a real native program compiled to SBF + Mollusk tests
+# - soltest-gen: the generator runs against the sample IDL
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  invariant-poc:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: proptest invariants (green) + the bug-catching demo (--ignored)
+        working-directory: examples/invariant-poc
+        run: |
+          cargo test
+          # The ignored test points proptest at the vulnerable variant; it MUST fail
+          # (that's the proof). Invert the exit code so CI stays green on the demo.
+          if cargo test -- --ignored; then
+            echo "::error::vuln demo unexpectedly passed — proptest should have caught it"; exit 1
+          else
+            echo "proptest correctly found the vulnerable counterexample"
+          fi
+
+  vault-poc-sbf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo
+            ~/.cache/solana
+          key: ${{ runner.os }}-sbf-${{ hashFiles('examples/vault-poc/Cargo.toml') }}
+      - name: Install Solana / cargo-build-sbf
+        run: |
+          sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+          echo "$HOME/.local/share/solana/install/active_release/bin" >> "$GITHUB_PATH"
+      - name: Fixed build — both Mollusk tests pass
+        working-directory: examples/vault-poc
+        run: cargo test-sbf
+      - name: Vuln build — the negative test MUST fail (proves it catches the bug)
+        working-directory: examples/vault-poc
+        run: |
+          if cargo test-sbf --features vuln; then
+            echo "::error::vuln build passed — the signer-check test failed to catch the bug"; exit 1
+          else
+            echo "negative test correctly failed on the vulnerable build"
+          fi
+
+  soltest-gen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Generator runs against the sample IDL
+        working-directory: tools/soltest-gen
+        run: |
+          node --check soltest-gen.mjs
+          node soltest-gen.mjs sample-escrow.idl.json --out /tmp/out
+          test -f /tmp/out/READINESS.md && echo "readiness report generated"

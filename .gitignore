@@ -1,0 +1,28 @@
+# Aggregate ignore for the suite. Each sub-skill also has its own .gitignore.
+node_modules
+dist
+*.log
+
+# Rust / Solana build output (the committed example fixtures are force-kept per sub-skill)
+**/target
+Cargo.lock
+**/test-ledger
+**/.anchor
+
+# Playwright / e2e
+**/test-results/
+**/playwright-report/
+**/.playwright/
+
+# Secrets — never commit keys or RPC creds
+.env
+*.key
+keypair*.json
+id.json
+.e2e-test-key.json
+
+# OS / editor
+.DS_Store
+.idea
+.vscode
+*.swp

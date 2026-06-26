@@ -1,0 +1,20 @@
+# Node
+node_modules
+dist
+*.log
+
+# Generated scan output / datasets (keep the example's committed dataset.json)
+soltest-out
+*-report.json
+report.json
+
+# Secrets — never commit RPC keys or address lists with PII
+.env
+*.key
+helius-key*
+
+# OS / editor
+.DS_Store
+.idea
+.vscode
+*.swp

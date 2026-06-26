@@ -1,0 +1,16 @@
+{
+  "release": "v1.3.0-rc",
+  "layers": [
+    { "name": "unit",         "status": "pass", "required": true },
+    { "name": "integration",  "status": "pass", "required": true },
+    { "name": "e2e",          "status": "fail", "required": true, "detail": "Playwright: connect-wallet flow broke" },
+    { "name": "contract",     "status": "pass", "required": true },
+    { "name": "formal",       "status": "skip", "required": true, "detail": "halmos not run this release" },
+    { "name": "coverage",     "status": "pass", "metric": 0.74, "threshold": 0.80, "direction": "min", "required": true },
+    { "name": "lighthouse",   "status": "pass", "metric": 0.81, "threshold": 0.90, "direction": "min", "required": true },
+    { "name": "a11y",         "status": "pass", "metric": 0.97, "threshold": 0.95, "direction": "min", "required": true },
+    { "name": "load-p95ms",   "status": "pass", "metric": 640,  "threshold": 500,  "direction": "max", "required": true },
+    { "name": "security",     "status": "pass", "required": true },
+    { "name": "uptime",       "status": "pass", "metric": 99.4,  "threshold": 99.9, "direction": "min", "required": false }
+  ]
+}

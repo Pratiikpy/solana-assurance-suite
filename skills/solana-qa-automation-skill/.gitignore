@@ -1,0 +1,37 @@
+# Node
+node_modules
+dist
+*.log
+
+# Playwright / e2e artifacts
+test-results/
+playwright-report/
+.playwright/
+e2e/fixtures/**/ext/
+*.webm
+trace.zip
+
+# Rust / Solana (if program examples are added)
+/target
+**/target
+Cargo.lock
+test-ledger
+.anchor
+**/*.so
+
+# QA run output (keep committed example manifests)
+qa-out/
+QA_PROOF.md
+
+# Secrets — never commit wallet keys / RPC creds
+.env
+*.key
+keypair*.json
+id.json
+.e2e-test-key.json
+
+# OS / editor
+.DS_Store
+.idea
+.vscode
+*.swp

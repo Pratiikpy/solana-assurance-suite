@@ -1,0 +1,26 @@
+# Node
+node_modules
+dist
+*.log
+
+# Rust (if any program examples are added)
+/target
+**/target
+Cargo.lock
+
+# Solana
+test-ledger
+.anchor
+**/*.so
+
+# Secrets — never commit keys or RPC creds
+.env
+*.key
+keypair*.json
+id.json
+
+# OS / editor
+.DS_Store
+.idea
+.vscode
+*.swp
