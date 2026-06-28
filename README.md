@@ -2,6 +2,8 @@
 
 **The verification & ship-safety layer for Solana — six focused skills, and every one ships a runnable proof.**
 
+![Eight proofs across six skills — all green, runnable yourself](assets/proofs.png)
+
 > A progressively-loaded **hub** for Claude Code / Codex. `solana-dev` and the protocol skills help you *build*; this suite makes sure what you built **actually works and is safe to ship**. Extends [solana-dev-skill](https://github.com/solana-foundation/solana-dev-skill); MIT.
 
 ## Why a suite
