@@ -1,0 +1,12 @@
+{
+  "_comment": "The planted deception defects, one (file, pattern) per class. Clean control files (*.clean.*) must produce ZERO findings.",
+  "planted": [
+    { "file": "app/deposit-flow.tsx", "pattern": "optimistic-success" },
+    { "file": "app/deposit-flow.tsx", "pattern": "dead-cta" },
+    { "file": "app/deposit-flow.tsx", "pattern": "fabricated-metric" },
+    { "file": "app/status-bar.tsx", "pattern": "hardcoded-status-badge" },
+    { "file": "app/status-bar.tsx", "pattern": "fake-verification" },
+    { "file": "app/admin.ts", "pattern": "no-op-ceremony" },
+    { "file": "app/data.ts", "pattern": "mock-as-real" }
+  ]
+}

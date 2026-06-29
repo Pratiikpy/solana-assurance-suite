@@ -6,6 +6,7 @@ is the roll-up. **Principle: evidence over claims — these are run, not asserte
 
 | Sub-skill | Command | Result |
 |-----------|---------|--------|
+| deception-defense / planted-deception | `node verify.mjs` | **precision 1.000 / recall 1.000 / FP 0** — 7 deception patterns caught, zero false alarms on the clean controls |
 | solana-testing / invariant-poc | `cargo test` | **4 passed** (+ proptest shrinks the bug to `caller=2, amount=1`) |
 | solana-testing / vault-poc (SBF) | `SBF_OUT_DIR=./fixtures cargo test` | **2 passed**; vuln build → negative test goes red (committed `.so`) |
 | solana-testing / soltest-gen | `node soltest-gen.mjs <idl>` | escrow → 18 checks; **Kamino Lending: 51 ix → 343 adversarial checks, 34 high-severity** |

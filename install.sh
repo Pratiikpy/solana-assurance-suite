@@ -14,6 +14,7 @@ CORE_SKILL_PATH="$SKILLS_DIR/solana-dev"
 
 # shortname -> repo folder under skills/
 declare -A MAP=(
+  [deception]=deception-defense
   [testing]=solana-testing-skill
   [qa]=solana-qa-automation-skill
   [sybil]=solana-sybil-defense
@@ -27,7 +28,7 @@ installed_name() { echo "${1%-skill}"; }
 
 # selection: all if no args, else the named subset
 if [ $# -eq 0 ]; then
-  SELECTED=(testing qa sybil attestations agent-eval bridge)
+  SELECTED=(deception testing qa sybil attestations agent-eval bridge)
 else
   SELECTED=("$@")
 fi
@@ -54,7 +55,7 @@ fi
 
 for key in "${SELECTED[@]}"; do
   folder="${MAP[$key]}"
-  if [ -z "$folder" ]; then echo -e "  ${YELLOW}→${NC} unknown skill '$key' (testing|qa|sybil|attestations|agent-eval|bridge)"; continue; fi
+  if [ -z "$folder" ]; then echo -e "  ${YELLOW}→${NC} unknown skill '$key' (deception|testing|qa|sybil|attestations|agent-eval|bridge)"; continue; fi
   src="$SCRIPT_DIR/skills/$folder/skill"
   name="$(installed_name "$folder")"
   dest="$SKILLS_DIR/$name"

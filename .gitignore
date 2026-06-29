@@ -26,3 +26,11 @@ id.json
 .idea
 .vscode
 *.swp
+
+# Local demo artifacts (not part of any skill)
+assets/demo.mp4
+assets/demo.gif
+assets/render_demo.py
+
+# Generated tool output
+**/soltest-out/
