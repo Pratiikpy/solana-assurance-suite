@@ -27,7 +27,7 @@ The flagship is **deception-defense**: the single most embarrassing failure isn'
 
 ## How they compose
 
-The suite isn't seven islands — the sub-skills reinforce each other along the ship-safety path:
+The suite isn't eight islands — the sub-skills reinforce each other along the ship-safety path:
 
 ```
 build (solana-dev)
