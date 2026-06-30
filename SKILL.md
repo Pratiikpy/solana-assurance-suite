@@ -1,12 +1,12 @@
 ---
 name: solana-assurance-suite
-description: The verification & ship-safety layer for Solana — a progressively-loaded hub that routes to seven focused, production-grade skills, each of which ships a runnable proof. Catch the deception defect class before a judge or user does (deception-defense — UI that claims success, liveness, or verification it can't back up); prove a program correct before mainnet (testing); gate the whole dApp release (qa-automation); keep airdrops fair (sybil-defense); issue & verify on-chain credentials (attestations); evaluate AI agents (agent-eval); and bridge cross-chain safely (bridge). Extends solana-dev-skill. Use this hub to pick the right sub-skill for a builder's task; each sub-skill then progressively loads its own references.
+description: The verification & ship-safety layer for Solana — a progressively-loaded hub that routes to eight focused, production-grade skills, each of which ships a runnable proof. Catch the deception defect class before a judge or user does (deception-defense — UI that claims success, liveness, or verification it can't back up); prove a program correct before mainnet (testing); gate the whole dApp release (qa-automation); keep airdrops fair (sybil-defense); issue & verify on-chain credentials (attestations); evaluate AI agents (agent-eval); and bridge cross-chain safely (bridge); plus autonomous loops that drive a goal to verified-done without faking it or running forever (solana-loops). Extends solana-dev-skill. Use this hub to pick the right sub-skill for a builder's task; each sub-skill then progressively loads its own references.
 user-invocable: true
 ---
 
 # Solana Assurance Suite — Prove It Before You Ship
 
-> **Extends**: [solana-dev-skill](https://github.com/solana-foundation/solana-dev-skill). This is a **hub** that routes to seven focused sub-skills under `skills/`. Load only the one the task needs — each is independently installable and ships its own progressive `SKILL.md`.
+> **Extends**: [solana-dev-skill](https://github.com/solana-foundation/solana-dev-skill). This is a **hub** that routes to eight focused sub-skills under `skills/`. Load only the one the task needs — each is independently installable and ships its own progressive `SKILL.md`.
 
 `solana-dev` and the protocol skills help you *build*. This suite is the layer that makes sure what you built **actually works and is safe to ship** — the assurance/verification layer, with one defining principle: **every skill ships a runnable proof a judge can execute, not a claim.** That principle is the thread that ties them together.
 
@@ -23,6 +23,7 @@ The flagship is **deception-defense**: the single most embarrassing failure isn'
 | Issue & **verify on-chain credentials** (SAS), proof-of-human gating | [solana-attestations](skills/solana-attestations-skill/skill/SKILL.md) | `sas-verify` 9/9 (every bypass rejected) |
 | **Evaluate a Solana AI agent** (right tool/program/accounts) + CI gate | [solana-agent-eval](skills/solana-agent-eval-skill/skill/SKILL.md) | `agent-eval` 4/4 (gate fires on regression) |
 | **Bridge cross-chain safely** (CCTP / Wormhole NTT / deBridge) | [solana-bridge](skills/solana-bridge-skill/skill/SKILL.md) | `bridge-guards` 6/6 (replay/finality/decimal guards) |
+| **Run an autonomous loop** that drives a goal to *verified*-done (PRD→product, audit, or mainnet-ready) without faking completion or running forever | [solana-loops](skills/solana-loops/skill/SKILL.md) | `loop-proof` 6/6 — Stop-gate re-verifies, can't fake done, guardrails fire |
 
 ## How they compose
 
@@ -37,25 +38,28 @@ build (solana-dev)
   → deception-defense     the truth pass — nothing claims success/verification it can't prove
   → solana-qa-automation  roll it ALL up into one release gate + human-level Phantom e2e
                           ↳ delegates program tests to solana-testing
+  → solana-loops          the driver — loop any of the above to green; the Stop-gate (not the model) says done
 ```
 
 `solana-qa-automation`'s release gate is the capstone: it ingests a per-layer results manifest
 (unit → e2e → contract → formal → load → lighthouse → security → uptime) and returns one
 BLOCK/PASS verdict — the other five skills feed layers into it. `deception-defense` is the
-pre-ship truth pass that runs over the built UI just before the gate.
+pre-ship truth pass that runs over the built UI just before the gate. `solana-loops` wraps the
+whole thing: it runs any of these as an autonomous loop and only stops when their objective proofs
+are green — so "done" is verified, never declared.
 
 ## Operating procedure
 
 1. **Pick the sub-skill** for the task from the table above.
-2. **Open that sub-skill's `SKILL.md`** — it progressively loads only its own references (token-efficient; you never load all seven at once).
+2. **Open that sub-skill's `SKILL.md`** — it progressively loads only its own references (token-efficient; you never load all eight at once).
 3. **Run its proof** to ground the work (`node --test` / `cargo test` / the skill's `tools/` runner).
 4. Before any demo or launch, run **deception-defense**; for a full launch, drive everything through **solana-qa-automation**'s release gate.
 
 ## Install
 
 ```bash
-./install.sh            # installs all seven sub-skills into ~/.claude/skills
-./install.sh testing    # or install a subset by name (deception|testing|qa|sybil|attestations|agent-eval|bridge)
+./install.sh            # installs all eight sub-skills into ~/.claude/skills
+./install.sh testing    # or install a subset by name (deception|testing|qa|sybil|attestations|agent-eval|bridge|loops)
 ```
 
 Each sub-skill is also independently installable from its own folder (`skills/<name>/install.sh`)
@@ -74,3 +78,4 @@ Every sub-skill ships an executable proof; the aggregate run is in [EVAL_REPORT.
 | solana-attestations | sas-verify | 9/9 |
 | solana-agent-eval | eval-run | 4/4 |
 | solana-qa-automation | release-gate | 6/6 |
+| solana-loops | loop-proof | 6/6 (Stop-gate: no fake-done + max-session/stuck guardrails) |

@@ -1,9 +1,9 @@
 #!/bin/bash
 # Solana Assurance Suite - aggregate installer.
-# Installs all seven sub-skills (or a named subset) into ~/.claude/skills, plus the core
+# Installs all eight sub-skills (or a named subset) into ~/.claude/skills, plus the core
 # solana-dev skill once. Each sub-skill is also independently installable from its folder.
 #
-#   ./install.sh                         # install all seven
+#   ./install.sh                         # install all eight
 #   ./install.sh testing qa sybil        # install a subset (shortnames below)
 set -e
 
@@ -21,6 +21,7 @@ declare -A MAP=(
   [attestations]=solana-attestations-skill
   [agent-eval]=solana-agent-eval-skill
   [bridge]=solana-bridge-skill
+  [loops]=solana-loops
 )
 
 # installed skill name = folder minus a trailing "-skill"
@@ -28,7 +29,7 @@ installed_name() { echo "${1%-skill}"; }
 
 # selection: all if no args, else the named subset
 if [ $# -eq 0 ]; then
-  SELECTED=(deception testing qa sybil attestations agent-eval bridge)
+  SELECTED=(deception testing qa sybil attestations agent-eval bridge loops)
 else
   SELECTED=("$@")
 fi
@@ -55,7 +56,7 @@ fi
 
 for key in "${SELECTED[@]}"; do
   folder="${MAP[$key]}"
-  if [ -z "$folder" ]; then echo -e "  ${YELLOW}→${NC} unknown skill '$key' (deception|testing|qa|sybil|attestations|agent-eval|bridge)"; continue; fi
+  if [ -z "$folder" ]; then echo -e "  ${YELLOW}→${NC} unknown skill '$key' (deception|testing|qa|sybil|attestations|agent-eval|bridge|loops)"; continue; fi
   src="$SCRIPT_DIR/skills/$folder/skill"
   name="$(installed_name "$folder")"
   dest="$SKILLS_DIR/$name"

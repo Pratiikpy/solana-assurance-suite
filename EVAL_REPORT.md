@@ -15,6 +15,7 @@ is the roll-up. **Principle: evidence over claims — these are run, not asserte
 | solana-attestations / sas-verify | `node --test` | **9/9** — valid passes; spoofed-owner/wrong-credential/schema/subject-reuse/revoked/expired/unauthorized-issuer all rejected |
 | solana-agent-eval / eval-run | `node --test` | **4/4** — correct agent 1.0; dropped-account regression → CI gate fires |
 | solana-qa-automation / release-gate | `node --test` | **6/6** — green → ALLOWED; regressed → BLOCKED on 5 classes (incl. a *skipped* required layer) |
+| solana-loops / loop-proof | `node verify.mjs` | **6/6** — Stop-gate re-verifies (no fake-done), honors blocked-with-reason, DONE only on real evidence, max-session + stuck guardrails fire |
 
 ## What the suite proves as a whole
 
@@ -26,7 +27,7 @@ is the roll-up. **Principle: evidence over claims — these are run, not asserte
 
 | Criterion | Evidence |
 |-----------|----------|
-| **Usefulness** | Seven recurring builder pains, each with a tool people reach for; the release gate + Phantom QA are derived from two real production pipelines |
+| **Usefulness** | Eight recurring builder pains, each with a tool people reach for; the release gate + Phantom QA are derived from two real production pipelines; `solana-loops` orchestrates the rest |
 | **Novelty** | Each sub-skill verified LOW-overlap against a 501-tool Solana inventory; several lanes (sybil, SAS, agent-eval, full-QA release gate) are unclaimed |
-| **Quality** | Nine executable proofs, all green; pinned to the June-2026 stack; runnable in CI |
+| **Quality** | Ten executable proofs, all green; pinned to the June-2026 stack; runnable in CI |
 | **Fit** | Hub-of-skills shape matches the kit's own model; each sub-skill mirrors `solana-game-skill`; MIT; clean install; composes with the kit |

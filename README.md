@@ -1,8 +1,8 @@
 # Solana Assurance Suite
 
-**The verification & ship-safety layer for Solana — seven focused skills, and every one ships a runnable proof.**
+**The verification & ship-safety layer for Solana — eight focused skills, and every one ships a runnable proof.**
 
-![Nine proofs across seven skills — all green, runnable yourself](assets/proofs.png)
+![Ten proofs across eight skills — all green, runnable yourself](assets/proofs.png)
 
 > A progressively-loaded **hub** for Claude Code / Codex. `solana-dev` and the protocol skills help you *build*; this suite makes sure what you built **actually works and is safe to ship**. Extends [solana-dev-skill](https://github.com/solana-foundation/solana-dev-skill); MIT.
 
@@ -12,7 +12,7 @@ Across the ecosystem, skills help you *write* Solana code. Almost nothing helps 
 
 It's structured exactly like the kit itself describes: *a progressively-loaded skill hub that routes to the best skills.* You load the hub, pick the sub-skill your task needs, and only that one's references load.
 
-## The seven skills
+## The eight skills
 
 | Skill | Solves | Runnable proof |
 |-------|--------|----------------|
@@ -23,6 +23,7 @@ It's structured exactly like the kit itself describes: *a progressively-loaded s
 | [**solana-attestations**](skills/solana-attestations-skill) | The Solana Attestation Service credential lifecycle — issue & **verify safely**; proof-of-human gating | sas-verify **9/9** (every bypass rejected) |
 | [**solana-agent-eval**](skills/solana-agent-eval-skill) | Evaluate a Solana AI agent's decisions (right tool/program/accounts) + CI regression gate | eval-run **4/4** (gate fires on regression) |
 | [**solana-bridge**](skills/solana-bridge-skill) | Bridge cross-chain safely — CCTP v2 / Wormhole NTT / messaging / deBridge + the hack-mapped guards | bridge-guards **6/6** (replay/finality/decimal/emitter) |
+| [**solana-loops**](skills/solana-loops) | **Hand off a goal, come back to verified progress** — autonomous loops (PRD→product, audit, mainnet-ready) whose "done" is machine-verified, can't be faked, can't run forever | loop-proof **6/6** (Stop-gate re-verifies + guardrails) |
 
 ## How they compose
 
@@ -34,6 +35,7 @@ build (solana-dev)
   → solana-agent-eval     prove the agent's decisions (if you ship an agent)
   → deception-defense     the truth pass — nothing on screen claims success it can't prove
   → solana-qa-automation  roll it ALL into one release gate + human-level Phantom e2e
+  → solana-loops          loop any of the above to verified-green — the Stop-gate says done, not the model
 ```
 
 The QA release gate is the capstone: it ingests a per-layer manifest (unit → e2e → contract →
@@ -43,8 +45,8 @@ five skills feed layers into it.
 ## Install
 
 ```bash
-./install.sh                  # all seven → ~/.claude/skills
-./install.sh deception testing # a subset (deception|testing|qa|sybil|attestations|agent-eval|bridge)
+./install.sh                  # all eight → ~/.claude/skills
+./install.sh deception loops  # a subset (deception|testing|qa|sybil|attestations|agent-eval|bridge|loops)
 ```
 
 Each sub-skill is also independently installable (`skills/<name>/install.sh`) and independently
@@ -63,6 +65,8 @@ MIT-licensed, so the suite can be merged whole or cherry-picked into the kit.
 ( cd skills/solana-sybil-defense/examples/planted-cluster && node generate.mjs && node verify.mjs )
 # deception-defense (zero-dep)
 ( cd skills/deception-defense/examples/planted-deception && node verify.mjs )
+# solana-loops Stop-gate (zero-dep)
+( cd skills/solana-loops/examples/loop-proof && node verify.mjs )
 ```
 
 Aggregate results: [EVAL_REPORT.md](EVAL_REPORT.md).
@@ -77,7 +81,7 @@ solana-assurance-suite/
     ├── deception-defense/           solana-testing-skill/
     ├── solana-qa-automation-skill/  solana-sybil-defense/
     ├── solana-attestations-skill/   solana-agent-eval-skill/
-    └── solana-bridge-skill/
+    └── solana-bridge-skill/         solana-loops/
 ```
 
 ## License
