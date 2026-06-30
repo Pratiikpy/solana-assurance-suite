@@ -1,9 +1,9 @@
 #!/bin/bash
 # Solana Assurance Suite - aggregate installer.
-# Installs all six sub-skills (or a named subset) into ~/.claude/skills, plus the core
+# Installs all seven sub-skills (or a named subset) into ~/.claude/skills, plus the core
 # solana-dev skill once. Each sub-skill is also independently installable from its folder.
 #
-#   ./install.sh                         # install all six
+#   ./install.sh                         # install all seven
 #   ./install.sh testing qa sybil        # install a subset (shortnames below)
 set -e
 

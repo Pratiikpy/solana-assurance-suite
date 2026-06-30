@@ -26,7 +26,7 @@ is the roll-up. **Principle: evidence over claims — these are run, not asserte
 
 | Criterion | Evidence |
 |-----------|----------|
-| **Usefulness** | Six recurring builder pains, each with a tool people reach for; the release gate + human-level Phantom QA are derived from real production projects |
+| **Usefulness** | Seven recurring builder pains, each with a tool people reach for; the release gate + Phantom QA are derived from two real production pipelines |
 | **Novelty** | Each sub-skill verified LOW-overlap against a 501-tool Solana inventory; several lanes (sybil, SAS, agent-eval, full-QA release gate) are unclaimed |
-| **Quality** | Eight executable proofs, all green; pinned to the June-2026 stack; runnable in CI |
+| **Quality** | Nine executable proofs, all green; pinned to the June-2026 stack; runnable in CI |
 | **Fit** | Hub-of-skills shape matches the kit's own model; each sub-skill mirrors `solana-game-skill`; MIT; clean install; composes with the kit |

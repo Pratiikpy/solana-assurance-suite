@@ -16,7 +16,7 @@ The flagship is **deception-defense**: the single most embarrassing failure isn'
 
 | When the builder needs to… | Use | Proof it ships |
 |---|---|---|
-| Make sure **nothing on screen lies** before a demo/launch — fake success on a reverted tx, dead buttons, hardcoded "LIVE", fake "verified" badges | [deception-defense](skills/deception-defense/skill/SKILL.md) | `deception-scan` precision 1.000 / recall 1.000 / FP 0 (7 patterns) |
+| Make sure **nothing on screen is faking it** before a demo/launch — fake success on a reverted tx, dead buttons, hardcoded "LIVE", fake "verified" badges | [deception-defense](skills/deception-defense/skill/SKILL.md) | `deception-scan` precision 1.000 / recall 1.000 / FP 0 **on fixtures** (7 patterns) |
 | Prove a **program** is correct before mainnet (unit/fuzz/invariants/coverage/CU) | [solana-testing](skills/solana-testing-skill/skill/SKILL.md) | invariant-poc + real SBF Mollusk test + IDL→suite generator (verified on Kamino Lending) |
 | Gate the **whole dApp release** + test like a human with a real **Phantom** wallet | [solana-qa-automation](skills/solana-qa-automation-skill/skill/SKILL.md) | `qa-gate` release verdict (6/6); Phantom e2e scaffold |
 | Keep an **airdrop/mint fair** (catch sybil farms, spare real users) | [solana-sybil-defense](skills/solana-sybil-defense/skill/SKILL.md) | `sybil-scan` precision 1.000 / recall 0.985 / FP=0 |
@@ -67,7 +67,7 @@ Every sub-skill ships an executable proof; the aggregate run is in [EVAL_REPORT.
 
 | Sub-skill | Proof | Result |
 |-----------|-------|--------|
-| deception-defense | planted-deception | precision 1.000 / recall 1.000 / FP 0 (7 patterns) |
+| deception-defense | planted-deception | precision 1.000 / recall 1.000 / FP 0 on fixtures (7 patterns) |
 | solana-testing | invariant-poc · vault-poc SBF · soltest-gen | 4✓ · 2✓ · escrow+Kamino(51 ix→343 checks) |
 | solana-bridge | bridge-guards | 6/6 |
 | solana-sybil-defense | planted-cluster | precision 1.000 / recall 0.985 / FP=0 |

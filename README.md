@@ -16,7 +16,7 @@ It's structured exactly like the kit itself describes: *a progressively-loaded s
 
 | Skill | Solves | Runnable proof |
 |-------|--------|----------------|
-| [**deception-defense**](skills/deception-defense) | **Catch the lie before a judge or user does** — UI that claims success/liveness/verification it can't back up (fake-green on a reverted tx, hardcoded "LIVE", fake "verified" badges, dead CTAs, fabricated metrics) | deception-scan **precision 1.000 / recall 1.000 / FP 0** (7 patterns) |
+| [**deception-defense**](skills/deception-defense) | **Catch the lie before a judge or user does** — UI that claims success/liveness/verification it can't back up (fake-green on a reverted tx, hardcoded "LIVE", fake "verified" badges, dead CTAs, fabricated metrics) | deception-scan **precision 1.000 / recall 1.000 / FP 0** on fixtures (7 patterns) |
 | [**solana-testing**](skills/solana-testing-skill) | Prove a program correct before mainnet — Mollusk/LiteSVM/Trident-fuzz/invariants/coverage/CU + an IDL→adversarial-suite generator + a Mainnet-Readiness gate | invariant-poc **4✓**, real SBF Mollusk **2✓**, soltest-gen on escrow **+ Kamino Lending (51 ix → 343 checks)** |
 | [**solana-qa-automation**](skills/solana-qa-automation-skill) | The full-stack dApp **release gate** + human-level e2e against a **real Phantom wallet** (built from two real production pipelines + a human-like testing methodology) | release-gate **6/6** (blocks on fail OR skip); Phantom e2e scaffold |
 | [**solana-sybil-defense**](skills/solana-sybil-defense) | Keep airdrops/mints fair — catch sybil farms (incl. fresh-funder cohorts) **without** punishing real users | sybil-scan **precision 1.000 / recall 0.985 / FP=0**, beats the naive filter |
@@ -43,8 +43,8 @@ five skills feed layers into it.
 ## Install
 
 ```bash
-./install.sh                  # all six → ~/.claude/skills
-./install.sh testing qa       # a subset (testing|qa|sybil|attestations|agent-eval|bridge)
+./install.sh                  # all seven → ~/.claude/skills
+./install.sh deception testing # a subset (deception|testing|qa|sybil|attestations|agent-eval|bridge)
 ```
 
 Each sub-skill is also independently installable (`skills/<name>/install.sh`) and independently
